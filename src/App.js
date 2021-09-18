@@ -24,7 +24,8 @@ class App extends Component {
     };
     const newArray = Array.from(this.state.tareas);
     newArray.push(tarea);
-    this.setState({ tareas: newArray });
+    document.getElementById(123).value = "";
+    this.setState({ tareas: newArray, filteredTareas: [], filtered: false });
   }
 
   deleteAllChecked() {
@@ -63,7 +64,7 @@ class App extends Component {
             Item count: <span id="item-count">{this.state.tareas.length}</span>
           </span>
           <span>
-            Unchecked count:{" "}
+            Unchecked count:
             <span id="unchecked-count">
               {
                 this.state.tareas.filter((tarea) => tarea.checked == false)
@@ -72,29 +73,38 @@ class App extends Component {
             </span>
           </span>
         </div>
-        <button className="button center" onClick={this.addTodo.bind(this)}>
-          Agregar Tarea
-        </button>
-        <button
-          className="button center"
-          onClick={this.deleteAllChecked.bind(this)}
-        >
-          Eliminar terminadas
-        </button>
-        <label>Filtro: </label>
-        <input
-          id="123"
-          type="text"
-          label="filtro"
-          onKeyUp={this.handleFilter.bind(this)}
-        ></input>
-        <Tareas
-          className="todo list"
-          tareas={
-            this.state.filtered ? this.state.filteredTareas : this.state.tareas
-          }
-          deleteTarea={this.deleteTarea.bind(this)}
-        />
+        <div className="buttons">
+          <button className="button1" onClick={this.addTodo.bind(this)}>
+            Agregar Tarea
+          </button>
+          <button
+            className="button1"
+            onClick={this.deleteAllChecked.bind(this)}
+          >
+            Eliminar terminadas
+          </button>
+        </div>
+        <div className="filter">
+          <span>Filtro</span>
+          <input
+            className="filterText"
+            id="123"
+            type="text"
+            label="filtro"
+            onKeyUp={this.handleFilter.bind(this)}
+          ></input>
+        </div>
+        <div className="todoList">
+          <Tareas
+            className="todo list"
+            tareas={
+              this.state.filtered
+                ? this.state.filteredTareas
+                : this.state.tareas
+            }
+            deleteTarea={this.deleteTarea.bind(this)}
+          />
+        </div>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 export default function Tarea(props) {
   function check() {
@@ -8,12 +8,12 @@ export default function Tarea(props) {
     props.deleteTarea(props.tarea.key);
   }
   return (
-    <li>
-      <p style={{ textDecoration: "" /*"line-through"*/ }}>
+    <li className="todoItem">
+      <p className="todo-text">
         {props.tarea.titulo}
-        <input type="checkbox" onChange={check}></input>
-        <button type="todo-delete" onClick={handleDelete}>
-          ❌
+        <input type="checkbox" className="todo-check" onChange={check}></input>
+        <button className="todo-delete" onClick={handleDelete}>
+          ✖
         </button>
       </p>
     </li>
